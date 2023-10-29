@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./component/Navbar";
 import TodoForm from "./component/main";
@@ -20,13 +19,19 @@ function App() {
     setTodoList(newTodoList);
   };
 
+  const removeTodo = (index) => {
+    let newTodoList = [...todo];
+    newTodoList.splice(index, 1);
+    setTodoList(newTodoList);
+  };
+
   return (
     <>
       <Navbar />
       <TodoForm addTodo={addTodo} />
-      <TodoList todoList={todo} />
-      
-      <Footer/>
+      <TodoList todoList={todo} removeTodo={removeTodo} />
+
+      <Footer />
     </>
   );
 }
