@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.css";
+import Navbar from "./component/Navbar";
+import TodoForm from "./component/main";
+import React, { useState } from "react";
+import TodoList from "./component/TodoList";
+import Footer from "./component/Footer";
 function App() {
+  let [todo, setTodoList] = useState([
+    {
+      todoItem: "Wake Up",
+    },
+  ]);
+
+  const addTodo = (todoItem) => {
+    let newTodoList = [...todo];
+    newTodoList.push({
+      todoItem: todoItem,
+    });
+    setTodoList(newTodoList);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <TodoForm addTodo={addTodo} />
+      <TodoList todoList={todo} />
+      
+      <Footer/>
+    </>
   );
 }
-
 export default App;
