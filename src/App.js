@@ -13,36 +13,40 @@ function App() {
     axios
       .get("http://localhost:3001/api/todos")
       .then((response) => {
-        console.log(response)
-
+        console.log("response data",response.data.data)
         setTodoList(response.data.data);
       })
       .catch((error) => {
         console.log("failed to fetch the todos", error);
       });
-  }, []); // Add an empty dependency array here
+  }, []);
 
   const addTodo = (todoItem) => {
     let newTodoList = [...todo];
-    newTodoList.push({
-        todoItem: todoItem,
-    });
     axios
       .post("http://localhost:3001/api/todos",{todoItem:todoItem})
       .then((response) => {
-        console.log(response)
         setTodoList([...newTodoList, response.data.data]);
       })
       .catch((error) => {
         console.log("failed to post the todos", error);
       });
+      
   };
 
-  const removeTodo = (index) => {
+  const removeTodo =( (_id) => {
     let newTodoList = [...todo];
-    newTodoList.splice(index, 1);
-    setTodoList(newTodoList);
-  };
+    console.log({data:{ _id:_id }});
+    // newTodoList.splice(_id, 1);
+    // setTodoList(newTodoList);
+    axios
+      .delete("http://localhost:3001/api/todos",{data:{ _id:_id }})
+      .then((response) => {
+        setTodoList(newTodoList.filter((todo) => todo._id !== _id));      })
+      .catch((error) => {
+        console.log("failed to detele the todos", error);
+      });
+  });
 
   return (
     <>

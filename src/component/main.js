@@ -33,7 +33,6 @@ class TodoForm extends Component {
           />
           <div id="emailHelp" className="form-text"></div>
         </div>
-
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

@@ -8,7 +8,8 @@ export default function TodoList(props, i) {
         <ul>
           {props.todoList.map((todo, i) => (
             <li key={i}>
-              <Todo todo={todo} removeTodo={props.removeTodo} />
+              <Todo todo={todo} removeTodo={props.removeTodo} _id={props._id}/>
+
             </li>
           ))}
         </ul>
@@ -18,4 +19,3 @@ export default function TodoList(props, i) {
     </div>
   );
 }
-
