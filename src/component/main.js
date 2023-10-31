@@ -16,7 +16,7 @@ class TodoForm extends Component {
         }}
       >
         <div className="mb-3">
-          <label  className="form-label"  htmlFor="todoInput">
+          <label className="form-label" htmlFor="todoInput">
             Your Todo
           </label>
           <input

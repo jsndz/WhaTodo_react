@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./component/Navbar";
-import TodoForm from "./component/main"; // Updated import
+import TodoForm from "./component/main";
 import React, { useEffect, useState } from "react";
 import TodoList from "./component/TodoList";
 import Footer from "./component/Footer";
@@ -13,7 +13,7 @@ function App() {
     axios
       .get("http://localhost:3001/api/todos")
       .then((response) => {
-        console.log("response data",response.data.data)
+        console.log("response data", response.data.data);
         setTodoList(response.data.data);
       })
       .catch((error) => {
@@ -24,34 +24,34 @@ function App() {
   const addTodo = (todoItem) => {
     let newTodoList = [...todo];
     axios
-      .post("http://localhost:3001/api/todos",{todoItem:todoItem})
+      .post("http://localhost:3001/api/todos", { todoItem: todoItem })
       .then((response) => {
         setTodoList([...newTodoList, response.data.data]);
       })
       .catch((error) => {
         console.log("failed to post the todos", error);
       });
-      
   };
 
-  const removeTodo =( (_id) => {
+  const removeTodo = (_id) => {
     let newTodoList = [...todo];
-    console.log({data:{ _id:_id }});
-    // newTodoList.splice(_id, 1);
-    // setTodoList(newTodoList);
+    console.log({ data: { _id: _id } });
     axios
-      .delete("http://localhost:3001/api/todos",{data:{ _id:_id }})
+      .delete("http://localhost:3001/api/todos", { data: { _id: _id } })
       .then((response) => {
-        setTodoList(newTodoList.filter((todo) => todo._id !== _id));      })
+        setTodoList(newTodoList.filter((todo) => todo._id !== _id));
+      })
       .catch((error) => {
         console.log("failed to detele the todos", error);
       });
-  });
+  };
 
   return (
     <>
       <Navbar />
-      <TodoForm addTodo={addTodo} />
+      <div className="d-flex justify-content-center ">
+        <TodoForm addTodo={addTodo} />
+      </div>
       <TodoList todoList={todo} removeTodo={removeTodo} />
       <Footer />
     </>

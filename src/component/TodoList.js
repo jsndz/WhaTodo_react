@@ -3,13 +3,12 @@ import Todo from "./todo";
 
 export default function TodoList(props, i) {
   return (
-    <div>
+    <div className="justify-content-center">
       {props.todoList.length > 0 ? (
         <ul>
           {props.todoList.map((todo, i) => (
             <li key={i}>
-              <Todo todo={todo} removeTodo={props.removeTodo} _id={props._id}/>
-
+              <Todo todo={todo} removeTodo={props.removeTodo} _id={props._id} />
             </li>
           ))}
         </ul>
